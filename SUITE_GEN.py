@@ -173,25 +173,7 @@ def remove_space(xml):
 
 #----------------------------------------------------------------------------------------#
 def rm_spc_bin_add_cksum(xml):
-        with open(xml) as fin:
-            lines = fin.readlines()
-            lines[0] = lines[0].replace('UTF-8', 'utf-8')
-            lines[0] = lines[0].replace("'", '"')
-        with open(xml, 'w') as fout:
-            for line in lines:
-                fout.write(line)
-        im_file = xml + '.tmp'
-        with io.open(xml, encoding='utf-8-sig', errors='ignore') as source:
-            with io.open(im_file, mode='w', encoding='utf-8') as target:
-                shutil.copyfileobj(source, target)
-        with open(im_file) as f1:
-            xml_content = ''.join(line.strip() for line in f1)
-        checksum = find_between(str(xml_content), "<Checksum>", "</Checksum>")
-        checksum_field = "<Checksum>" + checksum + "</Checksum>"
-        #print checksum_field
-        chs_xml_content = xml_content.replace(checksum_field, '')
-
-        new_xml_content = remove_space(chs_xml_content)
+        <Add CheckSUM Algorithm here>
 
         with open(im_file + '.tmp1', "w") as f2:
             f2.write(new_xml_content)
